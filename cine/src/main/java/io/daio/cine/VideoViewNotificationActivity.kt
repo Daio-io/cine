@@ -22,8 +22,9 @@ class VideoViewNotificationActivity : BaseVideoNotificationActivity<VideoItem>()
             videoView.start()
         }
 
-        setNotificationTitle(content.title)
+        setNotificationBodyText(content.title)
         setAppName("BBC Sport")
+        setAppIcon(R.drawable.abc_ic_star_black_36dp)
     }
 
 

@@ -3,8 +3,10 @@ package io.daio.cine
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.annotation.CallSuper
+import android.support.annotation.DrawableRes
 import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.SwipeDismissBehavior
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
@@ -59,8 +61,13 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
         app_title.text = text
     }
 
-    fun setNotificationTitle(text: String) {
-        title_text.text = text
+    fun setNotificationBodyText(text: String) {
+        body_text.text = text
+    }
+
+    fun setAppIcon(@DrawableRes drawableRes: Int) {
+        val icon = ContextCompat.getDrawable(this@BaseVideoNotificationActivity, drawableRes)
+        app_icon.setImageDrawable(icon)
     }
 
     abstract fun onOpenClicked()

@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 .setColorized(true)
                 .setWhen(Date().time)
                 .setSmallIcon(android.R.drawable.ic_menu_close_clear_cancel)
-                .setColor(ContextCompat.getColor(this, R.color.sport_yellow_dark))
+                .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
                 .setShowWhen(true)
                 .setStyle(NotificationCompat.DecoratedCustomViewStyle())
                 .setAutoCancel(true)

@@ -1,4 +1,4 @@
-package io.daio.cine
+package io.daio.richnotificationssample
 
 import android.content.Context
 import android.content.Intent
@@ -6,6 +6,8 @@ import android.net.Uri
 import android.os.Parcelable
 import android.view.ViewGroup
 import android.widget.VideoView
+import io.daio.cine.BaseVideoNotificationActivity
+import io.daio.cine.CineButton
 import kotlinx.android.parcel.Parcelize
 
 class VideoViewNotificationActivity : BaseVideoNotificationActivity<VideoItem>() {
@@ -25,30 +27,19 @@ class VideoViewNotificationActivity : BaseVideoNotificationActivity<VideoItem>()
         setNotificationBodyText(content.title)
         setAppName("BBC Sport")
         setAppIcon(R.drawable.abc_ic_star_black_36dp)
+        setButtons(CineButton("OK", {
+            finish()
+        }), CineButton("Close", {
+            finish()
+        }))
     }
 
-
-    override fun onCloseClicked() {
-        finish()
-    }
 
     override fun onDismiss() {
         finish()
     }
-
-    override fun onOpenClicked() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
 }
-
 
 @Parcelize
 data class VideoItem(val title: String,
                      val url: String) : Parcelable
-
-fun createNotificationIntent(context: Context,
-                             content: Parcelable,
-                             cls : Class<*>) = Intent(context, cls).apply {
-    putExtra(BaseVideoNotificationActivity.NOTIFICATION_CONTENT, content)
-}

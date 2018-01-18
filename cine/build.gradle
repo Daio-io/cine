@@ -6,8 +6,6 @@ group='com.github.Daio-io'
 android {
     compileSdkVersion 26
 
-
-
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 26
@@ -42,7 +40,3 @@ dependencies {
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
-androidExtensions {
-    experimental = true
-}

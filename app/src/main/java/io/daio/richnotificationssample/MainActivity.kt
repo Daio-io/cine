@@ -12,8 +12,6 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.RemoteViews
 import com.squareup.picasso.Picasso
-import io.daio.cine.VideoItem
-import io.daio.cine.VideoViewNotificationActivity
 import io.daio.cine.createNotificationIntent
 import java.util.*
 

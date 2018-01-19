@@ -24,7 +24,6 @@
             android:layout_marginTop="8dp"
             android:src="@android:drawable/ic_dialog_alert"
             android:tint="@color/notification_view_fill_color"
-            app:layout_constraintBottom_toTopOf="@id/icon_guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,7 +35,6 @@
             android:layout_marginTop="8dp"
             android:textColor="@color/notification_view_fill_color"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@id/icon_guideline"
             app:layout_constraintStart_toEndOf="@id/app_icon"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="My App" />
@@ -45,15 +43,12 @@
             android:id="@+id/videoContainer"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:layout_gravity="center"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="0dp"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/app_title">
-
-        </RelativeLayout>
+            app:layout_constraintTop_toBottomOf="@id/app_title"/>
 
         <TextView
             android:id="@+id/body_text"
@@ -72,15 +67,16 @@
             android:gravity="start"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/body_text" />
 
-        <android.support.constraint.Guideline
-            android:id="@+id/icon_guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="20dp" />
+        <!--<android.support.constraint.Guideline-->
+            <!--android:id="@+id/icon_guideline"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--app:layout_constraintGuide_begin="20dp" />-->
 
     </android.support.constraint.ConstraintLayout>
 

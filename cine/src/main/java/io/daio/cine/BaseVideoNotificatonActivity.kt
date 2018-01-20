@@ -17,6 +17,8 @@ import kotlinx.android.synthetic.main.base_video_activity.*
 abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActivity() {
 
     private lateinit var cineButtonsContainer: ViewGroup
+    private lateinit var videoContainer: ViewGroup
+    private lateinit var content: T
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,11 +26,10 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
         super.onCreate(savedInstanceState)
         setContentView(R.layout.base_video_activity)
         cineButtonsContainer = findViewById(R.id.cine_buttons_group)
-
-        val content = intent.getParcelableExtra<T>(NOTIFICATION_CONTENT)
+        content = intent.getParcelableExtra<T>(NOTIFICATION_CONTENT)
 
         val swipeView = findViewById<ViewGroup>(R.id.swipe_view)
-        val videoContainer = findViewById<ViewGroup>(R.id.videoContainer)
+        videoContainer = findViewById(R.id.videoContainer)
 
         val layoutParams = swipeView.layoutParams as CoordinatorLayout.LayoutParams
         val swipeDismissBehavior = SwipeDismissBehavior<View>()
@@ -49,6 +50,9 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
             swipeDismissBehavior.onTouchEvent(video_notification_parent, swipeView, event)
         }
 
+    }
+
+    override fun onEnterAnimationComplete() {
         onReady(videoContainer, content)
     }
 

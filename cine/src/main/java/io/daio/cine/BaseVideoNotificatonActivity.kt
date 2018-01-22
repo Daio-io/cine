@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import kotlinx.android.synthetic.main.base_video_activity.*
 
-
 abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActivity() {
 
     private lateinit var cineButtonsContainer: ViewGroup
@@ -26,7 +25,7 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
         super.onCreate(savedInstanceState)
         setContentView(R.layout.base_video_activity)
         cineButtonsContainer = findViewById(R.id.cine_buttons_group)
-        content = intent.getParcelableExtra<T>(NOTIFICATION_CONTENT)
+        content = intent.getParcelableExtra(NOTIFICATION_CONTENT)
 
         val swipeView = findViewById<ViewGroup>(R.id.swipe_view)
         videoContainer = findViewById(R.id.videoContainer)
@@ -49,10 +48,6 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
         swipeView.setOnTouchListener { _, event ->
             swipeDismissBehavior.onTouchEvent(video_notification_parent, swipeView, event)
         }
-
-    }
-
-    override fun onEnterAnimationComplete() {
         onReady(videoContainer, content)
     }
 
@@ -70,6 +65,7 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
     }
 
     fun setButtons(vararg buttons: CineButton) {
+        if (cineButtonsContainer.childCount > 0) cineButtonsContainer.removeAllViews()
         buttons.forEachIndexed {index, cineButton ->
             val button = layoutInflater.inflate(R.layout.cine_button, cineButtonsContainer, false) as Button
             button.text = cineButton.buttonTitle

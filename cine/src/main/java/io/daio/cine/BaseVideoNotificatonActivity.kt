@@ -1,5 +1,6 @@
 package io.daio.cine
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.annotation.CallSuper
@@ -17,7 +18,6 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
 
     private lateinit var cineButtonsContainer: ViewGroup
     private lateinit var videoContainer: ViewGroup
-    private lateinit var content: T
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
         super.onCreate(savedInstanceState)
         setContentView(R.layout.base_video_activity)
         cineButtonsContainer = findViewById(R.id.cine_buttons_group)
-        content = intent.getParcelableExtra(NOTIFICATION_CONTENT)
+        val content = intent.getParcelableExtra<T>(NOTIFICATION_CONTENT)
 
         val swipeView = findViewById<ViewGroup>(R.id.swipe_view)
         videoContainer = findViewById(R.id.videoContainer)
@@ -49,6 +49,12 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
             swipeDismissBehavior.onTouchEvent(video_notification_parent, swipeView, event)
         }
         onReady(videoContainer, content)
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        val content = intent?.getParcelableExtra<T>(NOTIFICATION_CONTENT)
+        content?.let { onNewContent(it) }
     }
 
     fun setAppName(text: String) {
@@ -77,6 +83,9 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
 
     abstract fun onDismiss()
     abstract fun onReady(container: ViewGroup, content: T)
+    fun onNewContent(content: T) {
+
+    }
 
     companion object {
         const val NOTIFICATION_CONTENT = "NOTIFICATION_CONTENT"

@@ -44,6 +44,7 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
             }
         })
         layoutParams.behavior = swipeDismissBehavior
+        swipeView.layoutParams = layoutParams
 
         swipeView.setOnTouchListener { _, event ->
             swipeDismissBehavior.onTouchEvent(video_notification_parent, swipeView, event)

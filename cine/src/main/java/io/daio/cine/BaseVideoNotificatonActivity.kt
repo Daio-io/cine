@@ -83,7 +83,7 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
 
     abstract fun onDismiss()
     abstract fun onReady(container: ViewGroup, content: T)
-    fun onNewContent(content: T) {
+    open fun onNewContent(content: T) {
 
     }
 

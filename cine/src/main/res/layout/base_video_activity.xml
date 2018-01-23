@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/app_icon"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:tint="@color/notification_view_fill_color"
@@ -31,8 +31,9 @@
             android:id="@+id/app_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/app_icon"
             android:textColor="@color/notification_view_fill_color"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@id/app_icon"

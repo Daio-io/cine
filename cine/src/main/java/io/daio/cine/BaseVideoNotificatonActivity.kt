@@ -54,8 +54,11 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        val content = intent?.getParcelableExtra<T>(NOTIFICATION_CONTENT)
-        content?.let { onNewContent(it) }
+        intent?.let {
+            this.intent = it
+            val content = it.getParcelableExtra<T>(NOTIFICATION_CONTENT)
+            onNewContent(content)
+        }
     }
 
     fun setAppName(text: String) {
@@ -73,8 +76,9 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
 
     fun setButtons(vararg buttons: CineButton) {
         if (cineButtonsContainer.childCount > 0) cineButtonsContainer.removeAllViews()
-        buttons.forEachIndexed {index, cineButton ->
-            val button = layoutInflater.inflate(R.layout.cine_button, cineButtonsContainer, false) as Button
+        buttons.forEachIndexed { index, cineButton ->
+            val button =
+                layoutInflater.inflate(R.layout.cine_button, cineButtonsContainer, false) as Button
             button.text = cineButton.buttonTitle
             button.setOnClickListener { cineButton.action() }
             cineButtonsContainer.addView(button)
@@ -95,5 +99,7 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
 
 }
 
-data class CineButton(val buttonTitle: String,
-                      val action: () -> Unit)
+data class CineButton(
+    val buttonTitle: String,
+    val action: () -> Unit
+)

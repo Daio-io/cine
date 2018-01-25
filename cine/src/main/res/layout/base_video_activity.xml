@@ -46,7 +46,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="My App" />
 
-        <RelativeLayout
+        <io.daio.cine.VideoContainer
             android:id="@+id/videoContainer"
             android:layout_width="match_parent"
             android:layout_height="250dp"

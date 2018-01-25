@@ -93,6 +93,7 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
     }
 
     companion object {
+        const val RATIO_16_9 = 0.56f
         const val NOTIFICATION_CONTENT = "NOTIFICATION_CONTENT"
         const val MAX_CINE_BUTTONS = 2
     }

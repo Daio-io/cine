@@ -10,5 +10,5 @@ import android.os.Parcelable
 fun createNotificationIntent(context: Context,
                              content: Parcelable,
                              cls : Class<*>) = Intent(context, cls).apply {
-    putExtra(BaseVideoNotificationActivity.NOTIFICATION_CONTENT, content)
+    putExtra(CineNotificationActivity.NOTIFICATION_CONTENT, content)
 }

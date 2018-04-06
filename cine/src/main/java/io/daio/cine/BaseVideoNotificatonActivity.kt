@@ -14,7 +14,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import kotlinx.android.synthetic.main.base_video_activity.*
 
-abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActivity() {
+abstract class CineNotificationActivity<in T : Parcelable> : AppCompatActivity() {
 
     private lateinit var cineButtonsContainer: ViewGroup
     private lateinit var videoContainer: ViewGroup
@@ -70,7 +70,7 @@ abstract class BaseVideoNotificationActivity<in T : Parcelable> : AppCompatActiv
     }
 
     fun setAppIcon(@DrawableRes drawableRes: Int) {
-        val icon = ContextCompat.getDrawable(this@BaseVideoNotificationActivity, drawableRes)
+        val icon = ContextCompat.getDrawable(this@CineNotificationActivity, drawableRes)
         app_icon.setImageDrawable(icon)
     }
 

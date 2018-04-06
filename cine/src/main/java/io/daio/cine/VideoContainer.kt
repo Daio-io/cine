@@ -13,7 +13,7 @@ class VideoContainer @JvmOverloads constructor(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        val height = (measuredWidth * BaseVideoNotificationActivity.RATIO_16_9).toInt()
+        val height = (measuredWidth * CineNotificationActivity.RATIO_16_9).toInt()
         super.onMeasure(
             View.MeasureSpec.makeMeasureSpec(measuredWidth, View.MeasureSpec.EXACTLY),
             View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY)

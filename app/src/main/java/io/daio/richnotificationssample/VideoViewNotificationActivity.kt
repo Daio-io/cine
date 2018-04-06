@@ -1,16 +1,14 @@
 package io.daio.richnotificationssample
 
-import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Parcelable
 import android.view.ViewGroup
 import android.widget.VideoView
-import io.daio.cine.BaseVideoNotificationActivity
+import io.daio.cine.CineNotificationActivity
 import io.daio.cine.CineButton
 import kotlinx.android.parcel.Parcelize
 
-class VideoViewNotificationActivity : BaseVideoNotificationActivity<VideoItem>() {
+class VideoViewNotificationActivity : CineNotificationActivity<VideoItem>() {
 
     private lateinit var videoView: VideoView
 

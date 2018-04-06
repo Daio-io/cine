@@ -1,4 +1,4 @@
-# cine
+# cine  :movie_camera:
 
 ## What?
 
@@ -42,13 +42,14 @@ sent to the activity intent so that it is available during the `onReady`call.
 e.g. 
 data class or pojo
 
-```@Parcelize
+```kotlin
+@Parcelize
   data class VideoItem(val title: String,
                        val url: String) : Parcelable
 
 ```
 Extend the activity
-```
+```kotlin
 class VideoViewNotificationActivity : CineNotificationActivity<VideoItem>() {
 
     private lateinit var videoView: VideoView
@@ -64,13 +65,14 @@ class VideoViewNotificationActivity : CineNotificationActivity<VideoItem>() {
 ```
 
 After you have created your activity make sure you register it in your `AndroidManifest.xml`
-
-        <activity
-            android:name=".path.to.my.VideoNotificationActivity"
-            android:configChanges="orientation|screenSize"
-            android:excludeFromRecents="true"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.Transparent" />
+```xml
+<activity
+          android:name=".path.to.my.VideoNotificationActivity"
+          android:configChanges="orientation|screenSize"
+          android:excludeFromRecents="true"
+          android:launchMode="singleTask"
+          android:theme="@style/Theme.Transparent" />
+```
             
 Make sure you use the `android:theme="@style/Theme.Transparent"`. 
 This will ensure the background is transparent and the view looks like a notification.
@@ -84,7 +86,7 @@ Use this to do any clean up.
 
 
 You can also override a few more method to customise as you please:
-
+```kotlin
         setNotificationBodyText(content.title)
         setAppName("My App")
         setAppIcon(R.drawable.abc_ic_star_black_36dp)
@@ -94,6 +96,7 @@ You can also override a few more method to customise as you please:
             finish()
         }))
 }
+```
 
 You can also override any of the usual activity methods if you want to do anything more custom.
 
@@ -107,12 +110,13 @@ The same way you would launch your app from a notification.
 
 First use the `createNotificationIntent` helper function to create an intent with the parcelable 
 data class and your `CineNotificationActivity` you created earlier. Like so:
-
-        val videoItem = VideoItem("My Video", "https://myvideo.mp4")
-        val intent = createNotificationIntent(this, videoItem, VideoViewNotificationActivity::class.java)
-        
+```kotlin
+val videoItem = VideoItem("My Video", "https://myvideo.mp4")
+val intent = createNotificationIntent(this, videoItem, VideoViewNotificationActivity::class.java)
+```
 And simply create a PendingIntent, add to the notification builder and display as normal.
 
+```kotlin
         val resultPendingIntent = PendingIntent.getActivity(
                 this,
                 0,
@@ -121,7 +125,7 @@ And simply create a PendingIntent, add to the notification builder and display a
 
         val notification = NotificationCompat.Builder(this, "default")
                 .setContentIntent(resultPendingIntent)
-                
+```   
 You should now be able to launch your CineNotification from your usual notifications.
 
 See a full example in the [sample app](https://github.com/Daio-io/cine/blob/master/app)

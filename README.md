@@ -6,7 +6,8 @@ Cine is a light weight library (or trick) to enable rich view notifications curr
 
 ## Why?
 
-There was a desire to get video into notifications and instead of being jealous of iOS I wrote this.
+There was a desire to get video into notifications and instead of being jealous of iOS I wrote this. Maybe in the future Android will support this, but right now, there is Cine.
+Although Cine's main use case is for video, it does not provide a video player. The aim was to be light weight and allow developers to provide and attach their own embedded video player to the Cine container. This is because video playback is usually fairly custom. Things like DRM and other highly optimised an custom playback is not something for Cine to care about. The aim of Cine is to get any rich content in a notification(ish). 
 
 ## How?
 
@@ -51,8 +52,6 @@ data class or pojo
 Extend the activity
 ```kotlin
 class VideoViewNotificationActivity : CineNotificationActivity<VideoItem>() {
-
-    private lateinit var videoView: VideoView
 
     override fun onReady(container: ViewGroup, content: VideoItem) {
     }

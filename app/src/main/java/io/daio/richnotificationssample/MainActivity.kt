@@ -24,21 +24,17 @@ class MainActivity : AppCompatActivity() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationManager = getSystemService(NotificationManager::class.java)
-            val radioChannel = NotificationChannel("radio", "radio", NotificationManager.IMPORTANCE_DEFAULT)
-            radioChannel.enableVibration(false)
-            radioChannel.enableLights(false)
             val defaultChannel = NotificationChannel("default", "default", NotificationManager.IMPORTANCE_DEFAULT)
             notificationManager.createNotificationChannel(defaultChannel)
-            notificationManager.createNotificationChannel(radioChannel)
         }
 
         val button = findViewById<Button>(R.id.noti_button)
         button.setOnClickListener {
-            showSecretNotification()
+            showNotification()
         }
     }
 
-    private fun showSecretNotification() {
+    private fun showNotification() {
         val notifId = 187683
         val videoItem = VideoItem("Goals Goals Goals", "https://firebasestorage.googleapis.com/v0/b/strangerthings-io-daio.appspot.com/o/BBC_One-2017-12-13_22-49-34.mp4?alt=media&token=cbc3fbef-280b-4bd3-9384-648775eca510")
         val intent = createNotificationIntent(this, videoItem, VideoViewNotificationActivity::class.java)
@@ -50,6 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         val contentView = RemoteViews(packageName, R.layout.noti_view)
         val notification = NotificationCompat.Builder(this, "default")
+                .setContentIntent(resultPendingIntent)
                 .setColorized(true)
                 .setWhen(Date().time)
                 .setSmallIcon(android.R.drawable.ic_menu_close_clear_cancel)

@@ -29,7 +29,7 @@ To add the library fist add JitPack as a repo to your main `build.gradle`.
 
 Then in your app `build.gradle` add cine as a dependency
 
-`implementation 'com.github.Daio-io:cine:v0.0.8'`
+`implementation 'com.github.Daio-io:cine:v0.1.0'`
 
 #### Implementing
 
@@ -45,13 +45,13 @@ data class or pojo
 
 ```kotlin
 @Parcelize
-  data class VideoItem(val title: String,
+  data class MyVideoDataItem(val title: String,
                        val url: String) : Parcelable
 
 ```
 Extend the activity
 ```kotlin
-class VideoViewNotificationActivity : CineNotificationActivity<VideoItem>() {
+class MyVideoViewNotificationActivity : CineNotificationActivity<MyVideoDataItem>() {
 
     override fun onReady(container: ViewGroup, content: VideoItem) {
     }
@@ -66,7 +66,7 @@ class VideoViewNotificationActivity : CineNotificationActivity<VideoItem>() {
 After you have created your activity make sure you register it in your `AndroidManifest.xml`
 ```xml
 <activity
-          android:name=".path.to.my.VideoNotificationActivity"
+          android:name=".path.to.my.MyVideoViewNotificationActivity"
           android:configChanges="orientation|screenSize"
           android:excludeFromRecents="true"
           android:launchMode="singleTask"
@@ -110,8 +110,8 @@ The same way you would launch your app from a notification.
 First use the `createNotificationIntent` helper function to create an intent with the parcelable 
 data class and your `CineNotificationActivity` you created earlier. Like so:
 ```kotlin
-val videoItem = VideoItem("My Video", "https://myvideo.mp4")
-val intent = createNotificationIntent(this, videoItem, VideoViewNotificationActivity::class.java)
+val videoItem = MyVideoDataItem("My Video", "https://myvideo.mp4")
+val intent = createNotificationIntent(this, videoItem, MyVideoViewNotificationActivity::class.java)
 ```
 And simply create a PendingIntent, add to the notification builder and display as normal.
 

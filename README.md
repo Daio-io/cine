@@ -1,4 +1,5 @@
-# cine  :movie_camera:
+# cine  :movie_camera: 
+[![](https://jitpack.io/v/Daio-io/cine.svg)](https://jitpack.io/#Daio-io/cine)
 
 ## What?
 

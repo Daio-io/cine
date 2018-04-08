@@ -3,7 +3,7 @@
 
 ## What?
 
-Cine is a light weight library (or trick) to enable rich view notifications currently not supported by RemoteViews. e.g. video playback.
+Cine is a light weight library to enable (or mimic) rich view notifications currently not supported by RemoteViews. e.g. video playback.
 
 ## Why?
 

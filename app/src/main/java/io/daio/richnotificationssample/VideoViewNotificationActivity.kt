@@ -25,11 +25,11 @@ class VideoViewNotificationActivity : CineNotificationActivity<VideoItem>() {
         setNotificationBodyText(content.title)
         setAppName("BBC Sport")
         setAppIcon(R.drawable.abc_ic_star_black_36dp)
-        setButtons(CineButton("OK", {
+        setButtons(CineButton("OK") {
             finish()
-        }), CineButton("Close", {
+        }, CineButton("Close") {
             finish()
-        }))
+        })
     }
 
 

@@ -6,9 +6,9 @@ import android.app.PendingIntent
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.NotificationCompat
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.RemoteViews
 import com.squareup.picasso.Picasso

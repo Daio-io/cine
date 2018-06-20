@@ -3,21 +3,26 @@ package io.daio.cine
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
-import android.support.annotation.CallSuper
-import android.support.annotation.DrawableRes
-import android.support.design.widget.CoordinatorLayout
-import android.support.design.widget.SwipeDismissBehavior
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import kotlinx.android.synthetic.main.base_video_activity.*
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.annotation.CallSuper
+import androidx.annotation.DrawableRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.ContextCompat
+import com.google.android.material.behavior.SwipeDismissBehavior
 
 abstract class CineNotificationActivity<in T : Parcelable> : AppCompatActivity() {
 
     private lateinit var cineButtonsContainer: ViewGroup
     private lateinit var videoContainer: ViewGroup
+    private lateinit var parentView: CoordinatorLayout
+    private lateinit var appTitleText: TextView
+    private lateinit var bodyText: TextView
+    private lateinit var appIcon: ImageView
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +30,10 @@ abstract class CineNotificationActivity<in T : Parcelable> : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.base_video_activity)
         cineButtonsContainer = findViewById(R.id.cine_buttons_group)
+        parentView = findViewById(R.id.video_notification_parent)
+        appTitleText = findViewById(R.id.app_title)
+        appIcon = findViewById(R.id.app_icon)
+        bodyText = findViewById(R.id.body_text)
         val content = intent.getParcelableExtra<T>(NOTIFICATION_CONTENT)
 
         val swipeView = findViewById<ViewGroup>(R.id.swipe_view)
@@ -47,7 +56,7 @@ abstract class CineNotificationActivity<in T : Parcelable> : AppCompatActivity()
         swipeView.layoutParams = layoutParams
 
         swipeView.setOnTouchListener { _, event ->
-            swipeDismissBehavior.onTouchEvent(video_notification_parent, swipeView, event)
+            swipeDismissBehavior.onTouchEvent(parentView, swipeView, event)
         }
         onReady(videoContainer, content)
     }
@@ -62,16 +71,16 @@ abstract class CineNotificationActivity<in T : Parcelable> : AppCompatActivity()
     }
 
     fun setAppName(text: String) {
-        app_title.text = text
+        appTitleText.text = text
     }
 
     fun setNotificationBodyText(text: String) {
-        body_text.text = text
+        bodyText.text = text
     }
 
     fun setAppIcon(@DrawableRes drawableRes: Int) {
         val icon = ContextCompat.getDrawable(this@CineNotificationActivity, drawableRes)
-        app_icon.setImageDrawable(icon)
+        appIcon.setImageDrawable(icon)
     }
 
     fun setButtons(vararg buttons: CineButton) {
